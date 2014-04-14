@@ -7,7 +7,7 @@ Heap::Heap(){
 }
 
 Heap::Heap(vector<int> v){
-	// assim a raiz do heap é o elemento na posição 1
+
 	this->last_pos = 0;
 	this->elements[0] = -1;
 

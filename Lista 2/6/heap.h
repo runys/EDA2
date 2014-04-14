@@ -33,7 +33,7 @@ public:
 	void heapify(int key);
 	void build_a_heap();
 
-	void heap_sort();
+	vector<int> heap_sort();
 
 	void print();
 };
