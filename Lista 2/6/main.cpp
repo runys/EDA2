@@ -19,7 +19,7 @@ int main(){
 	Heap *n_heap;
 	Heap *heap;
 
-	// Metodo 1
+	cout << "Metodo com vetor" << endl;
 	for (int i = 1; i <= 8; ++i){
 		int num = pow(10,i);
 		cout << num << " : ";
@@ -35,7 +35,7 @@ int main(){
 		v.clear();
 	}
 
-	// Metodo 2
+	cout << "Metodo insercao e remocao" << endl;
 	for (int i = 1; i <= 8; ++i){
 		int num = pow(10,i);
 		cout << num << " : ";
@@ -44,6 +44,9 @@ int main(){
 		t = clock();
 		for (int i = 0; i < num; ++i){
 			heap->insert(rand() % num + 1);
+		}
+		for (int i = 0; i < num; ++i){
+			v.push_back(heap->extract_max());
 		}
 		t = clock() - t;
 		cout << fixed << setprecision(6) << (((double)t)/CLOCKS_PER_SEC)/10 << endl;
