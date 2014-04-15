@@ -16,19 +16,20 @@ void radix_counting(vector<int> *v, int size) {
         if (v->at(i) > maior)
     	    maior = v->at(i);
     }
- 	
+    
+ 	//enquanto não chega na ultima casa do ultimo digito
     while (maior/exp > 0) {
-        int bucket[10] = { 0 };
+        int balde[10] = { 0 };
         //aplicando counting sort
     	for (int i = 0; i < size; i++){
-    	    bucket[(v->at(i) / exp) % 10]++; 
+    	    balde[(v->at(i) / exp) % 10]++; 
     	}
     	for (int i = 1; i < 10; i++){
-    	    bucket[i] += bucket[i - 1];
+    	    balde[i] += balde[i - 1];
     	}
     	//coloca na ordem
     	for (int i = size - 1; i >= 0; i--){
-    	    b[--bucket[(v->at(i) / exp) % 10]] = v->at(i);
+    	    b[--balde[(v->at(i) / exp) % 10]] = v->at(i);
     	}
     	//passa do auxiliar para o principal
     	for (int i = 0; i < size; i++){
