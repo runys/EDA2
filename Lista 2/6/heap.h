@@ -5,7 +5,7 @@
 #include <cstring>
 #include <vector>
 
-const int MAX = 101;
+const int MAX = 1000000001;
 
 using namespace std;
 
