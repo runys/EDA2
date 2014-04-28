@@ -1,20 +1,21 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
 
 using namespace std;
 
 //função de comparação para usar no merge
 bool compare(const int a, const int b){
-	if (a>b)
+	if (a>b){
 		return false;
+	}
 	return true;
 }
 
 void print(const vector<int> &v){
 	for (int i = 0; i < (int)v.size(); ++i)
 	{
-		cout << v[i] << " ";
+		if(v[i]!=0)
+			cout << v[i] << " ";
 	}
 	cout << endl;
 }
@@ -35,28 +36,37 @@ vector<int> merge_sort(const vector<int> &v){
 	direita = merge_sort(direita);
 
 	vector<int> ordenado(v.size());
+	cout << "Vetor: "; print(v);
+	cout << "Esquerda: "; print(esquerda);
+	cout << "Direita: "; print(direita);
 
-	// merge(esquerda.begin(), esquerda.end(), direita.begin(), direita.end(),ordenado.begin(), compare);
+	// merge(esquerda.begin(), esquerda.end(), direita.begin(), direita.end(),ordenado.begin());
 
-	while(!esquerda.empty() && !direita.empty()){
-		if(esquerda[0] < direita[0]){
-			cout << "troca: " << direita[0] << " com " << esquerda[0] << endl;
-			ordenado.push_back(esquerda[0]);
-			esquerda.erase(esquerda.begin());
-		} else{
-			cout << "troca: " << esquerda[0] << " com " << direita[0] << endl;
-			ordenado.push_back(direita[0]);
-			direita.erase(direita.begin());
+	vector<int>::iterator  it_e = esquerda.begin();
+	vector<int>::iterator  it_d = direita.begin();
+
+	while(it_e != esquerda.end() && it_d != direita.end()){
+		if(*it_e < *it_d){
+			ordenado.push_back(*it_e);
+			it_e++;
+		} else {
+			ordenado.push_back(*it_d);
+			it_d++;
 		}
 	}
 
-	ordenado.reserve(ordenado.size() + esquerda.size() + direita.size());
-
-	if(esquerda.size() <=0){
-		ordenado.insert(ordenado.end(), direita.begin(), direita.end());
-	} else {
-		ordenado.insert(ordenado.end(), esquerda.begin(), esquerda.end());
+	while(it_e != esquerda.end()){
+		ordenado.push_back(*it_e);
+		it_e++;
 	}
+
+	while(it_d != direita.end()){
+		ordenado.push_back(*it_d);
+		it_d++;
+	}
+
+	cout << "Ordenado: "; print(ordenado);
+	cout << endl;
 
 	return ordenado;
 }
